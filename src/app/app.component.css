@@ -10,14 +10,10 @@
   text-align: center;
 }
 
-.mat-card-title {
-  font-size: large;
-}
-
 .logo {
+  text-align: center;
   width: 100%;
   margin-bottom: 5%;
-  align-self: center;
   margin-top: 5%
 }
 
@@ -42,10 +38,9 @@
   background-color: #333333;
 }
 
-.form-control {
+.form-control, .form-control-file {
   color: #cc0000;
   padding: 10px;
-  border: 1px solid #dddddd;
   border-radius: 4px;
   cursor: pointer;
   text-align: center;
@@ -65,6 +60,11 @@
   border-radius: 4px;
   font-weight: bold;
   transition: background-color 0.3s ease;
+}
+
+.form-control-file {
+  height: 50px;
+  border: none;
 }
 
 .submit-btn:hover {
@@ -90,6 +90,7 @@
   justify-self: start; /* Align to the start (left) */
 }
 
-.grid-item {
-  /* Optional: You can add styles to your grid items */
+mat-label {
+  font-size: large;
+  color: #333333;
 }

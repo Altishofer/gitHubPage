@@ -1,10 +1,9 @@
 <div class="logo">
-  <img src="assets/logo.svg" alt="Logo" width="500" height="53">
+  <img ngSrc="assets/logo.svg" alt="Logo" width="500" height="53">
 </div>
-
 <mat-card class="business-form">
   <mat-card-header style="align-self: center; padding-bottom: 5%; font-size: larger">
-    <mat-card-title>Hunter</mat-card-title>
+    <mat-card-title style="font-size: larger">Hunter</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -12,12 +11,11 @@
         <div class="grid-item-left">
           <mat-form-field appearance="fill" class="form-group">
             <mat-label class="form-title">Select a property</mat-label>
-            <input matInput type="text" formControlName="pr" [matAutocomplete]="propertyAutoComplete">
-            <mat-autocomplete #propertyAutoComplete="matAutocomplete" (optionSelected)="onSelected($event)">
-              <mat-option *ngFor="let key of formControlsKeys()" [value]="key">
-                {{ key }}
-              </mat-option>
-            </mat-autocomplete>
+            <mat-select (selectionChange)="onSelected($event.value)" class="form-control" placeholder="Click to select">
+              <ng-container *ngFor="let control of form.controls | keyvalue">
+                <mat-option *ngIf="!getControl(control.key).value.active" [value]="control.key">{{ control.key }}</mat-option>
+              </ng-container>
+            </mat-select>
           </mat-form-field>
         </div>
       </div>
@@ -25,20 +23,26 @@
         <ng-container *ngFor="let property of form.controls | keyvalue">
           <ng-container *ngIf="getProperty(property.key).active || property.key === 'builder.csvDataFile'">
             <div class="grid-item-left">
-              <!-- Your first span content -->
               <mat-form-field appearance="fill" class="form-group">
                 <mat-label>{{ property.key }}</mat-label>
                 <div class="input-container">
-                  <ng-container *ngIf="getProperty(property.key).value === 'true' || getProperty(property.key).value === 'false'; else textInput">
+                  <ng-container *ngIf="getProperty(property.key).value === 'true' || getProperty(property.key).value === 'false'; else defaultInput">
                     <mat-select (selectionChange)="toggleValue(property.key)" class="form-control" [value]="getProperty(property.key).value">
                       <mat-option value="false">False</mat-option>
                       <mat-option value="true">True</mat-option>
                     </mat-select>
                   </ng-container>
-                  <ng-template #textInput>
-                    <input matInput [value]="getControl(property.key).value.value" (input)="updatePropertyValue(property.key, $event)" class="form-control"/>
+                  <ng-template #defaultInput>
+                    <ng-container *ngIf="property.key === 'builder.csvDataFile'; else textInput">
+                      <input type="file" (change)="onFileSelected($event)" accept=".xlsx" style="padding: 2em 2em 0 0"/>
+                      <input matInput type="text" hidden>
+                    </ng-container>
+                    <ng-template #textInput>
+                      <input matInput [value]="getControl(property.key).value.value" (input)="updatePropertyValue(property.key, $event)" class="form-control"/>
+                    </ng-template>
                   </ng-template>
                 </div>
+
               </mat-form-field>
             </div>
             <div class="grid-item-right">
@@ -48,7 +52,7 @@
                 </button>
               </div>
               <div>
-                <button *ngIf="property.key !== 'builder.csvDataFile'" mat-icon-button type="button" (click)="getProperty(property.key).active = false" class="form-control">
+                <button *ngIf="property.key !== 'builder.csvDataFile'" mat-icon-button type="button" (click)="setToInactive(property.key)" class="form-control">
                   <mat-icon>clear</mat-icon>
                 </button>
               </div>

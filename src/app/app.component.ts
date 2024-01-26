@@ -27,7 +27,7 @@ export function propertyValueRequired(): ValidatorFn {
 })
 export class AppComponent implements OnInit {
   form!: FormGroup;
-
+  file : File | null = null;
   constructor(
     private http: HttpClient,
     private fb: FormBuilder
@@ -52,12 +52,30 @@ export class AppComponent implements OnInit {
     });
   }
 
-  onSelected(event: MatAutocompleteSelectedEvent): void {
-    const key = event.option.value;
+  onFileSelected(event: any){
+    this.file = event.target.files[0];
+  }
+
+  resetFile(){
+    this.file = null;
+  }
+
+  onSelected(key: string): void {
     const control = this.form.controls[key];
     if (control) {
       const property: Property = control.value;
-      property.active = !property.active;
+      property.active = true;
+      control.setValue(property);
+    } else {
+      console.log("onSelected", key, ' not found');
+    }
+  }
+
+  setToInactive(key: string): void {
+    const control = this.form.controls[key];
+    if (control) {
+      const property: Property = control.value;
+      property.active = false;
       control.setValue(property);
     } else {
       console.log("onSelected", key, ' not found');
