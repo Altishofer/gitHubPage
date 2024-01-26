@@ -1,0 +1,14 @@
+dropdown menu for property file
+donwload output excels
+mockup only, no hunter in shell
+show hitrate
+delete previous runs
+import file from file explorer
+run checks for input file
+
+runs list
+- time stamp
+- hit rate
+- store properties
+- delete runs
+- get runs back

@@ -1,0 +1,95 @@
+.business-form {
+  background-color: #ffffff;
+  color: #333333;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid #dddddd;
+  text-align: center;
+}
+
+.mat-card-title {
+  font-size: large;
+}
+
+.logo {
+  width: 100%;
+  margin-bottom: 5%;
+  align-self: center;
+  margin-top: 5%
+}
+
+.logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+.title {
+  color: #333333;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-underline {
+  background-color: #333333;
+}
+
+.form-control {
+  color: #cc0000;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.form-control:hover {
+  border-color: #333333;
+}
+
+.submit-btn {
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #cc0000;
+}
+
+.ng-container {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.grid-container {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 2fr 1fr;
+}
+
+.grid-item-left {
+  justify-self: end; /* Align to the end (right) */
+}
+
+.grid-item-right {
+  justify-self: start; /* Align to the start (left) */
+}
+
+.grid-item {
+  /* Optional: You can add styles to your grid items */
+}
