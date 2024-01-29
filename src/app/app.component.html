@@ -38,7 +38,7 @@
                       <input matInput type="text" hidden>
                     </ng-container>
                     <ng-template #textInput>
-                      <input matInput [value]="getControl(property.key).value.value" (input)="updatePropertyValue(property.key, $event)" class="form-control"/>
+                      <input matInput [value]="getControl(property.key).value.value" (input)="updatePropertyValue(property.key, $event)" class="text-input"/>
                     </ng-template>
                   </ng-template>
                 </div>
@@ -46,21 +46,40 @@
               </mat-form-field>
             </div>
             <div class="grid-item-right">
-              <div>
+              <span>
                 <button mat-icon-button type="button" (click)="reset(property.key)" class="form-control">
                   <mat-icon>refresh</mat-icon>
                 </button>
-              </div>
-              <div>
+              </span>
+              <span>
                 <button *ngIf="property.key !== 'builder.csvDataFile'" mat-icon-button type="button" (click)="setToInactive(property.key)" class="form-control">
                   <mat-icon>clear</mat-icon>
                 </button>
-              </div>
+              </span>
             </div>
           </ng-container>
         </ng-container>
       </div>
-      <button mat-raised-button color="primary" type="submit" class="form-control">Submit</button>
+      <button mat-raised-button class="submit-btn" color="warn">Submit</button>
     </form>
+    <mat-card-content>
+      <div class="grid-container"  *ngFor="let config of formStates; let i = index">
+        <div class="grid-item-left" style="align-self: center">
+          Load Config {{ config.id }}
+        </div>
+        <div class="grid-item-right"  style="vertical-align: center">
+          <span>
+            <button mat-icon-button type="button" (click)="loadConfig(i)" class="form-control">
+              <mat-icon>refresh</mat-icon>
+            </button>
+          </span>
+          <span>
+            <button mat-icon-button type="button" (click)="deleteConfig(i)" class="form-control">
+              <mat-icon>clear</mat-icon>
+            </button>
+          </span>
+        </div>
+      </div>
+    </mat-card-content>
   </mat-card-content>
 </mat-card>

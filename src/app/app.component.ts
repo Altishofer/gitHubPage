@@ -28,6 +28,9 @@ export function propertyValueRequired(): ValidatorFn {
 export class AppComponent implements OnInit {
   form!: FormGroup;
   file : File | null = null;
+  formStates: any = [];
+  maxId : number = 0;
+
   constructor(
     private http: HttpClient,
     private fb: FormBuilder
@@ -110,11 +113,6 @@ export class AppComponent implements OnInit {
     return control;
   }
 
-
-  onSubmit(): number {
-    return 1;
-  }
-
   reset(key : string): void {
     const control = this.form.controls[key];
     if (control) {
@@ -130,10 +128,8 @@ export class AppComponent implements OnInit {
     return Object.keys(this.form.controls);
   }
 
-
   getProperty(key: string): Property {
     const control = this.form.controls[key];
-    // console.log("control", key, control);
     if (control) {
       return control.value as Property;
     } else {
@@ -142,4 +138,45 @@ export class AppComponent implements OnInit {
     }
   }
 
+
+  saveProperties(){
+    const prop : any = {};
+    const keys : string[] = this.formControlsKeys();
+    for (let i=0; i<keys.length; i++) {
+      const property: Property = this.getProperty(keys[i]);
+      const copy : Property = { key: property.key, value: property.value, active: property.active, defaultValue: property.defaultValue};
+      prop[property.key] = copy;
+      console.log(prop[property.key]);
+    }
+    this.maxId += 1;
+    this.formStates.push({"id":this.maxId, "property":prop});
+  }
+
+  loadConfig(index:number){
+    const prop = this.formStates[index];
+    console.log(prop);
+    const keys = Object.keys(prop.property);
+    for (let i=0; i<keys.length; i++) {
+      const memProperty: Property = prop.property[keys[i]];
+      const formProperty: Property = this.getProperty(keys[i]);
+      formProperty.active = memProperty.active;
+      formProperty.value = memProperty.value;
+    }
+  }
+
+  resetAll(){
+    const keys : string[] = this.formControlsKeys();
+    for (let i=0; i<keys.length; i++) {
+      this.reset(keys[i]);
+    }
+  }
+
+  onSubmit() {
+    this.saveProperties();
+    this.resetAll();
+  }
+
+  deleteConfig(index:number) : void{
+    this.formStates.splice(index, 1);
+  }
 }

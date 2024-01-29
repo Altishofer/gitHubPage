@@ -3,11 +3,14 @@
   color: #333333;
   width: 100%;
   max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
   box-sizing: border-box;
   border: 1px solid #dddddd;
   text-align: center;
+}
+
+.mat-green {
+  color: white;
+  background-color: forestgreen;
 }
 
 .logo {
@@ -30,29 +33,27 @@
 }
 
 .form-group {
-  margin-bottom: 20px;
   text-align: left;
+  width: 300px;
 }
 
 .mat-form-field-appearance-fill .mat-form-field-underline {
   background-color: #333333;
 }
 
+
 .form-control, .form-control-file {
-  color: #cc0000;
-  padding: 10px;
-  border-radius: 4px;
+  color: #000000;
   cursor: pointer;
   text-align: center;
+  padding: 0;
 }
 
 .form-control:hover {
-  border-color: #333333;
+  color:#cc0000;
 }
 
 .submit-btn {
-  background-color: #ff0000;
-  color: #ffffff;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
@@ -78,19 +79,27 @@
 
 .grid-container {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 1%;
   grid-template-columns: 2fr 1fr;
+  align-items: end;
+  height: fit-content;
 }
 
 .grid-item-left {
-  justify-self: end; /* Align to the end (right) */
+  justify-self: end;
 }
 
 .grid-item-right {
-  justify-self: start; /* Align to the start (left) */
+  justify-self: start;
+  vertical-align: center;
+  height: 100%;
 }
 
 mat-label {
   font-size: large;
   color: #333333;
+}
+
+.text-input {
+
 }
