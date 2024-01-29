@@ -1,23 +1,6 @@
-.business-form {
-  background-color: #ffffff;
-  color: #333333;
-  width: 100%;
-  max-width: 600px;
-  box-sizing: border-box;
-  border: 1px solid #dddddd;
-  text-align: center;
-}
-
-.mat-green {
-  color: white;
-  background-color: forestgreen;
-}
-
 .logo {
   text-align: center;
-  width: 100%;
-  margin-bottom: 5%;
-  margin-top: 5%
+  margin: 5% 0;
 }
 
 .logo img {
@@ -25,32 +8,44 @@
   height: auto;
 }
 
-.title {
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.business-form {
+  background-color: #ffffff;
   color: #333333;
+  max-width: 600px;
+  width: 100%;
+  border: 1px solid #dddddd;
+  text-align: center;
+  align-self: center;
   margin-bottom: 20px;
+}
+
+.title {
   font-size: 24px;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .form-group {
-  text-align: left;
-  width: 300px;
+  width: 100%;
 }
 
 .mat-form-field-appearance-fill .mat-form-field-underline {
   background-color: #333333;
 }
 
-
 .form-control, .form-control-file {
-  color: #000000;
   cursor: pointer;
   text-align: center;
   padding: 0;
 }
 
 .form-control:hover {
-  color:#cc0000;
+  color: #cc0000;
 }
 
 .submit-btn {
@@ -63,10 +58,6 @@
   transition: background-color 0.3s ease;
 }
 
-.form-control-file {
-  height: 50px;
-  border: none;
-}
 
 .submit-btn:hover {
   background-color: #cc0000;
@@ -80,26 +71,37 @@
 .grid-container {
   display: grid;
   grid-gap: 1%;
-  grid-template-columns: 2fr 1fr;
-  align-items: end;
-  height: fit-content;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
 }
 
-.grid-item-left {
-  justify-self: end;
+.grid-container-history {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 20px;
 }
 
-.grid-item-right {
-  justify-self: start;
-  vertical-align: center;
-  height: 100%;
+.grid-item, .grid-item-history {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-mat-label {
-  font-size: large;
-  color: #333333;
+.grid-container-history {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center; /* Add this line */
 }
 
-.text-input {
-
+.history-left {
+  display: flex; /* Add this line */
+  justify-content: flex-end; /* Change this line */
+  align-items: center; /* Add this line */
 }
+
+.history-right {
+  display: flex; /* Add this line */
+  justify-content: flex-start; /* Change this line */
+  align-items: center; /* Add this line */
+}
+
