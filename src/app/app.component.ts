@@ -192,4 +192,20 @@ export class AppComponent implements OnInit {
   deleteConfig(index:number) : void{
     this.formStates.splice(index, 1);
   }
+
+  downloadEmptyExcel(): void {
+    const filePath = 'assets/output.xlsx';
+
+    this.http.get(filePath, { responseType: 'blob' })
+      .subscribe((blob: Blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'assets/output.xlsx';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      });
+  }
 }
