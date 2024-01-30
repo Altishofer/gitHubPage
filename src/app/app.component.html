@@ -16,7 +16,7 @@
               <mat-label>Select a Property</mat-label>
               <mat-select (selectionChange)="onSelected($event.value)" placeholder="Click to select">
                 <ng-container *ngFor="let control of form.controls | keyvalue">
-                  <mat-option *ngIf="!getControl(control.key).value.active" [value]="control.key">{{ control.key }}</mat-option>
+                  <mat-option *ngIf="!getControl(control.key).value.active && getControl(control.key).value.key !== 'builder.csvDataFile'" [value]="control.key">{{ control.key }}</mat-option>
                 </ng-container>
               </mat-select>
             </mat-form-field>
