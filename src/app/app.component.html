@@ -48,7 +48,7 @@
                 </mat-form-field>
               </div>
               <div class="grid-item">
-                <button mat-icon-button type="button" (click)="reset(property.key)">
+                <button *ngIf="property.key !== 'builder.csvDataFile'" mat-icon-button type="button" (click)="reset(property.key)">
                   <mat-icon>refresh</mat-icon>
                 </button>
                 <button *ngIf="property.key !== 'builder.csvDataFile'" mat-icon-button type="button" (click)="setToInactive(property.key)">

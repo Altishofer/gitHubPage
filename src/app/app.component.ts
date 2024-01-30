@@ -80,6 +80,7 @@ export class AppComponent implements OnInit {
   }
 
   setToInactive(key: string): void {
+    this.hitRate = null;
     const control = this.form.controls[key];
     if (control) {
       const property: Property = control.value;
@@ -161,7 +162,7 @@ export class AppComponent implements OnInit {
 
   loadConfig(index:number){
     const prop = this.formStates[index];
-    console.log(prop);
+    this.hitRate = prop.hitRate;
     const keys = Object.keys(prop.property);
     for (let i=0; i<keys.length; i++) {
       const memProperty: Property = prop.property[keys[i]];
@@ -184,7 +185,7 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       this.hitRate = Math.floor(Math.random()*100);
       this.saveProperties(this.hitRate);
-      this.resetAll();
+      // this.resetAll();
       this.loading = false;
     }, 2000);
   }

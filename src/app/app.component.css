@@ -83,7 +83,6 @@
 }
 
 .grid-item, .grid-item-history {
-  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -91,18 +90,18 @@
 .grid-container-history {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: center; /* Add this line */
+  align-items: center;
 }
 
 .history-left {
-  display: flex; /* Add this line */
-  justify-content: flex-end; /* Change this line */
-  align-items: center; /* Add this line */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .history-right {
-  display: flex; /* Add this line */
-  justify-content: flex-start; /* Change this line */
-  align-items: center; /* Add this line */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
