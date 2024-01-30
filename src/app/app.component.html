@@ -22,7 +22,6 @@
             </mat-form-field>
           </div>
         </div>
-
         <div class="grid-container">
           <ng-container *ngFor="let property of form.controls | keyvalue">
             <ng-container *ngIf="getProperty(property.key).active || property.key === 'builder.csvDataFile'">
@@ -59,13 +58,16 @@
             </ng-container>
           </ng-container>
         </div>
-
+        <div style="margin-top: 20px; margin-bottom:20px">
+          <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+          <div *ngIf="hitRate !== null">Hit Rate: {{ hitRate }}%</div>
+        </div>
         <button mat-raised-button class="submit-btn" color="primary">Submit</button>
 
       </form>
 
       <div class="grid-container-history" *ngFor="let config of formStates; let i = index">
-        <div class="history-left">Load Config {{ config.id }}</div>
+        <div class="history-left">Load Config {{ config.id }} ({{config.hitRate}}%)</div>
         <div class="history-right">
           <button mat-icon-button type="button" (click)="loadConfig(i)">
             <mat-icon>refresh</mat-icon>

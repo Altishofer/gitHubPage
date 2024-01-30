@@ -16,6 +16,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
         MatButtonModule,
         MatIconModule,
         MatCheckboxModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatProgressBarModule
     ],
   providers: [],
   bootstrap: [AppComponent]

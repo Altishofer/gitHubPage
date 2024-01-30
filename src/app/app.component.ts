@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, Form, FormBuilder, FormControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 interface Property {
   key: string;
@@ -30,6 +31,10 @@ export class AppComponent implements OnInit {
   file : File | null = null;
   formStates: any = [];
   maxId : number = 0;
+
+  loading: boolean = false;
+  hitRate: number | null = null;
+
 
   constructor(
     private http: HttpClient,
@@ -86,6 +91,7 @@ export class AppComponent implements OnInit {
   }
 
   toggleValue(key: string): void {
+    this.hitRate = null;
     const control = this.form.controls[key];
     if (control) {
       const property: Property = control.value;
@@ -97,6 +103,7 @@ export class AppComponent implements OnInit {
   }
 
   updatePropertyValue(key:string, event:any) {
+    this.hitRate = null;
     const value : string = event.target.value;
     const control = this.form.controls[key];
     if (control) {
@@ -139,7 +146,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  saveProperties(){
+  saveProperties(hitRate:number){
     const prop : any = {};
     const keys : string[] = this.formControlsKeys();
     for (let i=0; i<keys.length; i++) {
@@ -149,7 +156,7 @@ export class AppComponent implements OnInit {
       console.log(prop[property.key]);
     }
     this.maxId += 1;
-    this.formStates.push({"id":this.maxId, "property":prop});
+    this.formStates.push({"id":this.maxId, "property":prop, "hitRate":hitRate});
   }
 
   loadConfig(index:number){
@@ -172,8 +179,14 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit() {
-    this.saveProperties();
-    this.resetAll();
+    this.loading = true;
+
+    setTimeout(() => {
+      this.hitRate = Math.floor(Math.random()*100);
+      this.saveProperties(this.hitRate);
+      this.resetAll();
+      this.loading = false;
+    }, 2000);
   }
 
   deleteConfig(index:number) : void{
